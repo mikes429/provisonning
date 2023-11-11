@@ -1,6 +1,6 @@
 apiVersion: v1
 data:
-  replicas: "2"
+  replicas: "3"
   diskGiB: "120"
   memoryMiB: "16384"
   networkName: "DSwitch-VM Network"
