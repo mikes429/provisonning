@@ -37,7 +37,7 @@ spec:
             creationTimestamp: null
           network:
             devices:
-            - networkName: '{{ fromConfigMap "policies" "machineset-infra-vsphere" "networkName" | toInt }}'
+            - networkName: '{{ fromConfigMap "policies" "machineset-infra-vsphere" "networkName" }}'
           numCPUs: '{{ fromConfigMap "policies" "machineset-infra-vsphere" "numCPUs" | toInt }}'
           numCoresPerSocket: '{{ fromConfigMap "policies" "machineset-infra-vsphere" "numCoresPerSocket" | toInt }}'
           snapshot: ""
