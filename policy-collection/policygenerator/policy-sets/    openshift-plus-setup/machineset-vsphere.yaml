@@ -4,27 +4,28 @@ metadata:
   creationTimestamp: null
   labels:
     machine.openshift.io/cluster-api-cluster: '{{ (lookup "config.openshift.io/v1" "Infrastructure" "" "cluster").status.infrastructureName }}'
-  name: '{{ (lookup "config.openshift.io/v1" "Infrastructure" "" "cluster").status.infrastructureName }}-infra'
+  name: '{{ (lookup "config.openshift.io/v1" "Infrastructure" "" "cluster").status.infrastructureName }}-odf'
   namespace: openshift-machine-api
 spec:
   replicas: '{{ fromConfigMap "policies" "machineset-infra-vsphere" "replicas" | toInt }}'
   selector:
     matchLabels:
       machine.openshift.io/cluster-api-cluster: '{{ (lookup "config.openshift.io/v1" "Infrastructure" "" "cluster").status.infrastructureName }}'
-      machine.openshift.io/cluster-api-machineset: '{{ (lookup "config.openshift.io/v1" "Infrastructure" "" "cluster").status.infrastructureName }}-infra'
+      machine.openshift.io/cluster-api-machineset: '{{ (lookup "config.openshift.io/v1" "Infrastructure" "" "cluster").status.infrastructureName }}-odf'
   template:
     metadata:
       creationTimestamp: null
       labels:
         machine.openshift.io/cluster-api-cluster: '{{ (lookup "config.openshift.io/v1" "Infrastructure" "" "cluster").status.infrastructureName }}'
         machine.openshift.io/cluster-api-machine-role: infra
-        machine.openshift.io/cluster-api-machine-type: infra 
-        machine.openshift.io/cluster-api-machineset: '{{ (lookup "config.openshift.io/v1" "Infrastructure" "" "cluster").status.infrastructureName }}-infra'
+        machine.openshift.io/cluster-api-machine-type: odf
+        machine.openshift.io/cluster-api-machineset: '{{ (lookup "config.openshift.io/v1" "Infrastructure" "" "cluster").status.infrastructureName }}-odf'
     spec:
       metadata:
         creationTimestamp: null
         labels:
-          node-role.kubernetes.io/infra: "" 
+          cluster.ocs.openshift.io/openshift-storage: ""
+          node-role.kubernetes.io/worker: "" 
       providerSpec:
         value:
           apiVersion: vsphereprovider.openshift.io/v1beta1
