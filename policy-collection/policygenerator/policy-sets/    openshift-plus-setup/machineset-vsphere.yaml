@@ -47,6 +47,6 @@ spec:
           workspace:
             datacenter: '{{ fromConfigMap "policies" "machineset-infra-vsphere" "datacenter" | toInt }}'
             datastore: '{{ fromConfigMap "policies" "machineset-infra-vsphere" "datastore" | toInt }}'
-            folder: '{{ fromConfigMap "policies" "machineset-infra-vsphere" "folder" | toInt }}'
+            folder: /Home/vm/hub-h4242
             resourcepool: '{{ fromConfigMap "policies" "machineset-infra-vsphere" "resourcepool" | toInt }}'
             server: '{{ fromConfigMap "policies" "machineset-infra-vsphere" "server" | toInt }}'
