@@ -1,0 +1,52 @@
+apiVersion: machine.openshift.io/v1beta1
+kind: MachineSet
+metadata:
+  creationTimestamp: null
+  labels:
+    machine.openshift.io/cluster-api-cluster: '{{ (lookup "config.openshift.io/v1" "Infrastructure" "" "cluster").status.infrastructureName }}'
+  name: '{{ (lookup "config.openshift.io/v1" "Infrastructure" "" "cluster").status.infrastructureName }}-infra'
+  namespace: openshift-machine-api
+spec:
+  replicas: '{{ fromConfigMap "policies" "machineset-infra-vsphere" "replicas" | toInt }}'
+  selector:
+    matchLabels:
+      machine.openshift.io/cluster-api-cluster: '{{ (lookup "config.openshift.io/v1" "Infrastructure" "" "cluster").status.infrastructureName }}'
+      machine.openshift.io/cluster-api-machineset: '{{ (lookup "config.openshift.io/v1" "Infrastructure" "" "cluster").status.infrastructureName }}-infra'
+  template:
+    metadata:
+      creationTimestamp: null
+      labels:
+        machine.openshift.io/cluster-api-cluster: '{{ (lookup "config.openshift.io/v1" "Infrastructure" "" "cluster").status.infrastructureName }}'
+        machine.openshift.io/cluster-api-machine-role: infra
+        machine.openshift.io/cluster-api-machine-type: infra 
+        machine.openshift.io/cluster-api-machineset: '{{ (lookup "config.openshift.io/v1" "Infrastructure" "" "cluster").status.infrastructureName }}-infra'
+    spec:
+      metadata:
+        creationTimestamp: null
+        labels:
+          node-role.kubernetes.io/infra: "" 
+      providerSpec:
+        value:
+          apiVersion: vsphereprovider.openshift.io/v1beta1
+          credentialsSecret:
+            name: vsphere-cloud-credentials
+          diskGiB: '{{ fromConfigMap "policies" "machineset-infra-vsphere" "diskGiB" | toInt }}'
+          kind: VSphereMachineProviderSpec
+          memoryMiB: '{{ fromConfigMap "policies" "machineset-infra-vsphere" "memoryMiB" | toInt }}'
+          metadata:
+            creationTimestamp: null
+          network:
+            devices:
+            - networkName: '{{ fromConfigMap "policies" "machineset-infra-vsphere" "networkName" | toInt }}'
+          numCPUs: '{{ fromConfigMap "policies" "machineset-infra-vsphere" "numCPUs" | toInt }}'
+          numCoresPerSocket: '{{ fromConfigMap "policies" "machineset-infra-vsphere" "numCoresPerSocket" | toInt }}'
+          snapshot: ""
+          template: '{{ (lookup "config.openshift.io/v1" "Infrastructure" "" "cluster").status.infrastructureName }}-rhcos'
+          userDataSecret:
+            name: worker-user-data
+          workspace:
+            datacenter: '{{ fromConfigMap "policies" "machineset-infra-vsphere" "datacenter" | toInt }}'
+            datastore: '{{ fromConfigMap "policies" "machineset-infra-vsphere" "datastore" | toInt }}'
+            folder: '{{ fromConfigMap "policies" "machineset-infra-vsphere" "folder" | toInt }}'
+            resourcepool: '{{ fromConfigMap "policies" "machineset-infra-vsphere" "resourcepool" | toInt }}'
+            server: '{{ fromConfigMap "policies" "machineset-infra-vsphere" "server" | toInt }}'
