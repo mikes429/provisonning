@@ -8,7 +8,7 @@ data:
   numCoresPerSocket: "2"
   datacenter: Home
   datastore: vsanDatastore
-  folder: /Home/vm
+  folder: /Home/vm/hub-h4242
   resourcepool: /Home/host/SCCD/Resources
   server: "192.168.0.10"
 kind: ConfigMap
