@@ -2,9 +2,9 @@ apiVersion: v1
 data:
   replicas: "3"
   diskGiB: "120"
-  memoryMiB: "16384"
+  memoryMiB: "32768"
   networkName: "DSwitch-VM Network"
-  numCPUs: "6"
+  numCPUs: "12"
   numCoresPerSocket: "2"
   datacenter: "Home"
   datastore: "vsanDatastore"
