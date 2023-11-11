@@ -3,13 +3,13 @@ data:
   replicas: "2"
   diskGiB: "120"
   memoryMiB: "16384"
-  networkName: DSwitch-VM Network
+  networkName: "DSwitch-VM Network"
   numCPUs: "6"
   numCoresPerSocket: "2"
-  datacenter: Home
-  datastore: vsanDatastore
-  folder: /Home/vm/hub-h4242
-  resourcepool: /Home/host/SCCD/Resources
+  datacenter: "Home"
+  datastore: "vsanDatastore"
+  folder: "/Home/vm/hub-h4242"
+  resourcepool: "/Home/host/SCCD/Resources"
   server: "192.168.0.10"
 kind: ConfigMap
 metadata:
