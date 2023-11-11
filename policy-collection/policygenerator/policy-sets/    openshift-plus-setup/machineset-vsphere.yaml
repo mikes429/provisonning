@@ -25,7 +25,9 @@ spec:
         creationTimestamp: null
         labels:
           cluster.ocs.openshift.io/openshift-storage: ""
-          node-role.kubernetes.io/worker: "" 
+          node-role.kubernetes.io/infra: ""
+          node-role.kubernetes.io/odf: ""
+          node-role.kubernetes.io/worker: ""
       providerSpec:
         value:
           apiVersion: vsphereprovider.openshift.io/v1beta1
