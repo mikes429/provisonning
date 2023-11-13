@@ -79,6 +79,8 @@ spec:
     preparePlacement: {}
     replica: 3
     resources: {}
+  flexibleScaling: true
+  enableCephTools: true
 ---
 apiVersion: objectbucket.io/v1alpha1
 kind: ObjectBucketClaim
