@@ -8,3 +8,4 @@ resources:
 
 components:
   - ../../components/application-controller-cluster-admin
+  - ../../components/policy-generator
