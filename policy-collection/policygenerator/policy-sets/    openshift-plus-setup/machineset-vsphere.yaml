@@ -43,7 +43,7 @@ spec:
           numCPUs: '{{ fromConfigMap "policies" "machineset-infra-vsphere" "numCPUs" | toInt }}'
           numCoresPerSocket: '{{ fromConfigMap "policies" "machineset-infra-vsphere" "numCoresPerSocket" | toInt }}'
           snapshot: ""
-          template: '{{ (lookup "config.openshift.io/v1" "Infrastructure" "" "cluster").status.infrastructureName }}-rhcos'
+          template: '{{ (lookup "config.openshift.io/v1" "Infrastructure" "" "cluster").status.infrastructureName }}-rhcos-generated-region-generated-zone'
           userDataSecret:
             name: worker-user-data
           workspace:
