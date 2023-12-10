@@ -49,6 +49,6 @@ spec:
           workspace:
             datacenter: '{{ fromConfigMap "policies" "machineset-infra-vsphere" "datacenter" }}'
             datastore: '{{ fromConfigMap "policies" "machineset-infra-vsphere" "datastore" }}'
-            folder: '{{ fromConfigMap "policies" "machineset-infra-vsphere" "folder" }}'
+            folder: '/Home/vm/{{ (lookup "config.openshift.io/v1" "Infrastructure" "" "cluster").status.infrastructureName }}'
             resourcepool: '{{ fromConfigMap "policies" "machineset-infra-vsphere" "resourcepool" }}'
             server: '{{ fromConfigMap "policies" "machineset-infra-vsphere" "server" }}'
