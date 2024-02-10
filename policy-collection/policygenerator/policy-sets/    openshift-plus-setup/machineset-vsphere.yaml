@@ -13,7 +13,6 @@ spec:
       machine.openshift.io/cluster-api-machineset: '{{ (lookup "config.openshift.io/v1" "Infrastructure" "" "cluster").status.infrastructureName }}-odf'
   template:
     metadata:
-      creationTimestamp: null
       labels:
         machine.openshift.io/cluster-api-cluster: '{{ (lookup "config.openshift.io/v1" "Infrastructure" "" "cluster").status.infrastructureName }}'
         machine.openshift.io/cluster-api-machine-role: infra
@@ -21,7 +20,6 @@ spec:
         machine.openshift.io/cluster-api-machineset: '{{ (lookup "config.openshift.io/v1" "Infrastructure" "" "cluster").status.infrastructureName }}-odf'
     spec:
       metadata:
-        creationTimestamp: null
         labels:
           cluster.ocs.openshift.io/openshift-storage: ""
           node-role.kubernetes.io/infra: ""
